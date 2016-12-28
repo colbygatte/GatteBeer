@@ -1,0 +1,6 @@
+framework module Pods_GatteBeer {
+  umbrella header "Pods-GatteBeer-umbrella.h"
+
+  export *
+  module * { export * }
+}
