@@ -8,11 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		E9FE94201E14695100A1D01A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE941F1E14695100A1D01A /* AppDelegate.swift */; };
-		E9FE94221E14695100A1D01A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94211E14695100A1D01A /* ViewController.swift */; };
 		E9FE94251E14695100A1D01A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94231E14695100A1D01A /* Main.storyboard */; };
 		E9FE94271E14695100A1D01A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94261E14695100A1D01A /* Assets.xcassets */; };
 		E9FE942A1E14695100A1D01A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94281E14695100A1D01A /* LaunchScreen.storyboard */; };
 		E9FE94321E14696D00A1D01A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94311E14696D00A1D01A /* GoogleService-Info.plist */; };
+		E9FE94341E146A5700A1D01A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94331E146A5700A1D01A /* App.swift */; };
+		E9FE94361E146A8D00A1D01A /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94351E146A8D00A1D01A /* DB.swift */; };
+		E9FE94381E146ADE00A1D01A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94371E146ADE00A1D01A /* Login.storyboard */; };
+		E9FE943A1E146B2200A1D01A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94391E146B2200A1D01A /* LoginViewController.swift */; };
+		E9FE943C1E146B9B00A1D01A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */; };
+		E9FE94411E146BDE00A1D01A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94401E146BDE00A1D01A /* MainViewController.swift */; };
+		E9FE94431E146DC900A1D01A /* GBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94421E146DC900A1D01A /* GBUser.swift */; };
+		E9FE94451E146E4B00A1D01A /* GBBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94441E146E4B00A1D01A /* GBBeer.swift */; };
 		FA4FBED1F46128C8AA3D4FC7 /* Pods_GatteBeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F84334A7D8A226A2A0A8C62 /* Pods_GatteBeer.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,12 +29,19 @@
 		9F84334A7D8A226A2A0A8C62 /* Pods_GatteBeer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GatteBeer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FE941C1E14695100A1D01A /* GatteBeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GatteBeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FE941F1E14695100A1D01A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9FE94211E14695100A1D01A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9FE94241E14695100A1D01A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9FE94261E14695100A1D01A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9FE94291E14695100A1D01A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9FE942B1E14695100A1D01A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9FE94311E14696D00A1D01A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9FE94331E146A5700A1D01A /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		E9FE94351E146A8D00A1D01A /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
+		E9FE94371E146ADE00A1D01A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = GatteBeer/Login.storyboard; sourceTree = "<group>"; };
+		E9FE94391E146B2200A1D01A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = GatteBeer/LoginViewController.swift; sourceTree = "<group>"; };
+		E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = GatteBeer/RegisterViewController.swift; sourceTree = "<group>"; };
+		E9FE94401E146BDE00A1D01A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E9FE94421E146DC900A1D01A /* GBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBUser.swift; sourceTree = "<group>"; };
+		E9FE94441E146E4B00A1D01A /* GBBeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBBeer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +76,9 @@
 		E9FE94131E14695100A1D01A = {
 			isa = PBXGroup;
 			children = (
+				E9FE943F1E146BC500A1D01A /* Storyboards */,
+				E9FE943E1E146BB300A1D01A /* Models */,
+				E9FE943D1E146BA700A1D01A /* Controllers */,
 				E9FE941E1E14695100A1D01A /* GatteBeer */,
 				E9FE941D1E14695100A1D01A /* Products */,
 				4C71572C5031B7F9216EECD4 /* Pods */,
@@ -80,15 +97,43 @@
 		E9FE941E1E14695100A1D01A /* GatteBeer */ = {
 			isa = PBXGroup;
 			children = (
+				E9FE94331E146A5700A1D01A /* App.swift */,
+				E9FE94351E146A8D00A1D01A /* DB.swift */,
 				E9FE941F1E14695100A1D01A /* AppDelegate.swift */,
-				E9FE94211E14695100A1D01A /* ViewController.swift */,
-				E9FE94231E14695100A1D01A /* Main.storyboard */,
 				E9FE94261E14695100A1D01A /* Assets.xcassets */,
 				E9FE94281E14695100A1D01A /* LaunchScreen.storyboard */,
 				E9FE942B1E14695100A1D01A /* Info.plist */,
 				E9FE94311E14696D00A1D01A /* GoogleService-Info.plist */,
 			);
 			path = GatteBeer;
+			sourceTree = "<group>";
+		};
+		E9FE943D1E146BA700A1D01A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE94391E146B2200A1D01A /* LoginViewController.swift */,
+				E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */,
+				E9FE94401E146BDE00A1D01A /* MainViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E9FE943E1E146BB300A1D01A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE94421E146DC900A1D01A /* GBUser.swift */,
+				E9FE94441E146E4B00A1D01A /* GBBeer.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E9FE943F1E146BC500A1D01A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE94231E14695100A1D01A /* Main.storyboard */,
+				E9FE94371E146ADE00A1D01A /* Login.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +202,7 @@
 				E9FE94321E14696D00A1D01A /* GoogleService-Info.plist in Resources */,
 				E9FE942A1E14695100A1D01A /* LaunchScreen.storyboard in Resources */,
 				E9FE94271E14695100A1D01A /* Assets.xcassets in Resources */,
+				E9FE94381E146ADE00A1D01A /* Login.storyboard in Resources */,
 				E9FE94251E14695100A1D01A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,8 +262,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9FE94221E14695100A1D01A /* ViewController.swift in Sources */,
+				E9FE94341E146A5700A1D01A /* App.swift in Sources */,
+				E9FE94361E146A8D00A1D01A /* DB.swift in Sources */,
+				E9FE943C1E146B9B00A1D01A /* RegisterViewController.swift in Sources */,
+				E9FE94411E146BDE00A1D01A /* MainViewController.swift in Sources */,
+				E9FE943A1E146B2200A1D01A /* LoginViewController.swift in Sources */,
 				E9FE94201E14695100A1D01A /* AppDelegate.swift in Sources */,
+				E9FE94451E146E4B00A1D01A /* GBBeer.swift in Sources */,
+				E9FE94431E146DC900A1D01A /* GBUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +282,7 @@
 				E9FE94241E14695100A1D01A /* Base */,
 			);
 			name = Main.storyboard;
+			path = GatteBeer;
 			sourceTree = "<group>";
 		};
 		E9FE94281E14695100A1D01A /* LaunchScreen.storyboard */ = {
@@ -383,6 +436,7 @@
 				E9FE94301E14695100A1D01A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
