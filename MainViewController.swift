@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        title = "GatteBeer"
         
         FIRAuth.auth()?.signInAnonymously() { user, error in
             if error == nil && user != nil {

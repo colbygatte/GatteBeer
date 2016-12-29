@@ -11,7 +11,7 @@ import Firebase
 
 class GBUser: NSObject {
     var uid: String!
-    var apnTokens: [String]!
+    var apnTokens: [String]?
     
     var email: String?
     var beers: [GBBeer]!
@@ -31,12 +31,7 @@ class GBUser: NSObject {
                 }
             }
             
-            let tokens = values["apnTokens"] as? [String]
-            if tokens != nil {
-                apnTokens = tokens
-            } else {
-                apnTokens = []
-            }
+            apnTokens = values["apnTokens"] as? [String]
         } else {
             
         }
@@ -47,7 +42,7 @@ class GBUser: NSObject {
         email = user.email
     }
     
-    func toFirebaseObject() -> Any {
+    override func toFirebaseObject() -> Any? {
         var object: [String: Any] = [:]
         
         object["email"] = email

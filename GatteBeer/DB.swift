@@ -12,4 +12,15 @@ import Firebase
 class DB {
     static var ref: FIRDatabaseReference!
     static var usersRef: FIRDatabaseReference!
+    
+    static func save(object: NSObject, userPath: String) {
+        DB.usersRef.child(App.loggedInUser.uid).child(userPath).setValue(object.toFirebaseObject())
+    }
+}
+
+
+extension NSObject {
+    func toFirebaseObject() -> Any? {
+        return nil
+    }
 }

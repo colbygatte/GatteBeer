@@ -9,7 +9,6 @@
 import UIKit
 
 struct App {
-    static var loggedIn: Bool = false
     static var loggedInUser: GBUser!
     static var apnToken: String?
     

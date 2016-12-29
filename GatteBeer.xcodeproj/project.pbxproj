@@ -20,6 +20,8 @@
 		E9FE94411E146BDE00A1D01A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94401E146BDE00A1D01A /* MainViewController.swift */; };
 		E9FE94431E146DC900A1D01A /* GBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94421E146DC900A1D01A /* GBUser.swift */; };
 		E9FE94451E146E4B00A1D01A /* GBBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94441E146E4B00A1D01A /* GBBeer.swift */; };
+		E9FE94471E147D6800A1D01A /* BeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94461E147D6800A1D01A /* BeerViewController.swift */; };
+		E9FE94491E147D7600A1D01A /* NewBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */; };
 		FA4FBED1F46128C8AA3D4FC7 /* Pods_GatteBeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F84334A7D8A226A2A0A8C62 /* Pods_GatteBeer.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		E9FE94401E146BDE00A1D01A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E9FE94421E146DC900A1D01A /* GBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBUser.swift; sourceTree = "<group>"; };
 		E9FE94441E146E4B00A1D01A /* GBBeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBBeer.swift; sourceTree = "<group>"; };
+		E9FE94461E147D6800A1D01A /* BeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerViewController.swift; sourceTree = "<group>"; };
+		E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBeerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				E9FE94391E146B2200A1D01A /* LoginViewController.swift */,
 				E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */,
 				E9FE94401E146BDE00A1D01A /* MainViewController.swift */,
+				E9FE94461E147D6800A1D01A /* BeerViewController.swift */,
+				E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -270,6 +276,8 @@
 				E9FE94201E14695100A1D01A /* AppDelegate.swift in Sources */,
 				E9FE94451E146E4B00A1D01A /* GBBeer.swift in Sources */,
 				E9FE94431E146DC900A1D01A /* GBUser.swift in Sources */,
+				E9FE94471E147D6800A1D01A /* BeerViewController.swift in Sources */,
+				E9FE94491E147D7600A1D01A /* NewBeerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
