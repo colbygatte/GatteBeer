@@ -13,11 +13,12 @@ import MapKit
 class GBBeer: NSObject {
     var id: String!
     var name: String!
-    var rating: Int!
+    var rating: Int?
     
     var imgFile: String?
-    var location: CLLocationCoordinate2D?
+    var image: UIImage?
     var notes: String?
+    var location: GBLocation?
     
     init(snapshot: FIRDataSnapshot) {
         let values = snapshot.value as! [String: Any]
@@ -25,11 +26,11 @@ class GBBeer: NSObject {
         id = snapshot.key
         name = values["name"] as! String
         notes = values["notes"] as? String
-        rating = values["rating"] as! Int
+        rating = values["rating"] as? Int
         imgFile = values["imgFile"] as? String
         
-        if let latitude = values["latitude"] as? Int, let longitude = values["longitude"] as? Int {
-            location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        if let locationData = values["location"] {
+            location = GBLocation(snapshot: snapshot.childSnapshot(forPath: "location"))
         }
     }
     
@@ -43,9 +44,9 @@ class GBBeer: NSObject {
         
         object["name"] = name
         object["notes"] = notes
-        object["longitude"] = location?.longitude
-        object["latitude"] = location?.latitude
         object["imgFile"] = imgFile
+        object["rating"] = rating
+        object["location"] = location?.toFirebaseObject()
         
         return object
     }

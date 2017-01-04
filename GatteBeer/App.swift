@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
 struct App {
     static var loggedInUser: GBUser!
     static var apnToken: String?
+    
+    static var icon: UIImage!
+    static var starRed: UIImage!
+    static var starGray: UIImage!
     
     struct Theme {
         

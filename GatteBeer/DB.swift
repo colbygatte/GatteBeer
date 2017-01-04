@@ -12,6 +12,8 @@ import Firebase
 class DB {
     static var ref: FIRDatabaseReference!
     static var usersRef: FIRDatabaseReference!
+    static var userRef: FIRDatabaseReference!
+    static var storageURL = "gs://gattebeer.appspot.com/beer/"
     
     static func save(object: NSObject, userPath: String) {
         DB.usersRef.child(App.loggedInUser.uid).child(userPath).setValue(object.toFirebaseObject())

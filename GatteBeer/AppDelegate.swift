@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -19,26 +20,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
         
+        App.icon = UIImage(named: "beer.png")
+        App.starRed = UIImage(named: "star_red.png")
+        App.starGray = UIImage(named: "star_gray.png")
+        
         DB.ref = FIRDatabase.database().reference()
         DB.usersRef = DB.ref.child("users")
         
+        // Push notifications
         if #available(iOS 10.0, *) {
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
                 completionHandler: {_, _ in })
-            
-            // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
-            
         } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        
         application.registerForRemoteNotifications()
-        
         
         return true
     }
@@ -59,4 +59,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         App.apnToken = token
     }
 }
-
