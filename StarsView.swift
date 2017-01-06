@@ -15,6 +15,7 @@ class StarsView: UIView {
     @IBOutlet weak var star3ImageView: UIImageView!
     @IBOutlet weak var star4ImageView: UIImageView!
     @IBOutlet weak var star5ImageView: UIImageView!
+    var editable: Bool = true
     
     var imageViews: [UIImageView]!
     var rating: Int!
@@ -31,20 +32,25 @@ class StarsView: UIView {
     
     func setup() {
         Bundle.main.loadNibNamed("StarsView", owner: self, options: nil)
-        starsView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         addSubview(starsView)
         imageViews = [star1ImageView, star2ImageView, star3ImageView, star4ImageView, star5ImageView]
         
         for imageView in imageViews {
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(recognizer:)))
             imageView.addGestureRecognizer(tap)
-            print("yeah")
         }
         
         rating = 0
     }
     
+    func setFrame() {
+        starsView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+    }
+    
     func tapped(recognizer: UITapGestureRecognizer) {
+        if !editable {
+            return
+        }
         
         if let imageView = recognizer.view as? UIImageView {
             switch imageView {

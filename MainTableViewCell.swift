@@ -11,33 +11,31 @@ import UIKit
 class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var beerImageView: UIImageView!
     @IBOutlet weak var beerNameLabel: UILabel!
-    @IBOutlet weak var beerRatingLabel: UILabel!
+    @IBOutlet weak var starsView: StarsView!
     
     var beer: GBBeer!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        starsView.setFrame()
+        starsView.editable = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        
     }
     
     
     func setup() {
         if let rating = beer.rating {
-            beerRatingLabel.text = "Rating: " + String(rating + 1)
-            beerRatingLabel.sizeToFit()
+            starsView.set(rating: rating)
         }
         
         beerNameLabel.text = beer.name
         beerNameLabel.sizeToFit()
         
         if let image = beer.image {
-            beerImageView.image = beer.image
+            beerImageView.image = image
         } else {
             beerImageView.image = App.icon
         }

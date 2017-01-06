@@ -13,26 +13,41 @@ import CoreLocation
 
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     var beers: [GBBeer] = []
+    var searchedBeers: [GBBeer] = []
+    var showSearchedBeers: Bool = false
+    var sort: GBSortOptions!
+    var searchController: UISearchController!
 
+    override func viewWillDisappear(_ animated: Bool) {
+        searchController.dismiss(animated: false, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "GatteBeer"
+        sort = .newest
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search your beer!"
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.definesPresentationContext = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainCell")
         tableView.rowHeight = 80.0
-        title = "GatteBeer"
+        tableView.tableHeaderView = searchController.searchBar
         
-        FIRAuth.auth()?.signInAnonymously() { user, error in
-            if error == nil && user != nil {
-                DB.usersRef.child(user!.uid).observeSingleEvent(of: .value, with: { snap in
-                    App.loggedInUser = GBUser(snapshot: snap)
-                    DB.userRef = DB.usersRef.child(App.loggedInUser.uid)
-                    self.begin()
-                })
-            } else {
-                print("Error signing in anonymously.")
-            }
+        
+        App.runWhenLoggedIn {
+            self.begin()
         }
     }
     
@@ -45,6 +60,7 @@ class MainViewController: UIViewController {
             }
             
             DispatchQueue.main.async {
+                self.beers = GBBeerSorter.sort(beers: self.beers, order: self.sort)
                 self.tableView.reloadData()
             }
         })
@@ -58,20 +74,37 @@ class MainViewController: UIViewController {
             let row = (tableView.indexPathForSelectedRow?.row)!
             
             let vc = segue.destination as! BeerViewController
-            vc.beer = beers[row]
+            if showSearchedBeers && searchController.searchBar.text != "" {
+                vc.beer = searchedBeers[row]
+            } else {
+                vc.beer = beers[row]
+            }
+        } else if segue.identifier == "Sort" {
+            let vc = segue.destination as! SortViewController
+            vc.sort = sort
+            vc.delegate = self
         }
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if showSearchedBeers && searchController.searchBar.text != "" {
+            return searchedBeers.count
+        }
         return beers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let beer: GBBeer
+        if showSearchedBeers && searchController.searchBar.text != "" {
+            beer = searchedBeers[indexPath.row]
+        } else {
+            beer = beers[indexPath.row]
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         cell.imageView?.image = nil
-        let beer = beers[indexPath.row]
         
         if beer.image != nil {
             cell.beerImageView.image = beer.image
@@ -81,7 +114,6 @@ extension MainViewController: UITableViewDataSource {
                     beer.image = UIImage(data: data!)
                     DispatchQueue.main.async {
                         cell.beerImageView.image = beer.image
-                        //self.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }
                 }
             })
@@ -98,11 +130,68 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "View", sender: nil)
     }
+    
+}
+
+// MARK: Search
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if let searchString = searchController.searchBar.text {
+            searchedBeers = beers.filter({ beer in
+                let bools = [(beer.name.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil),
+                             (beer.location?.city?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil),
+                             (beer.location?.place?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil)]
+                if bools.contains(true) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            
+            tableView.reloadData()
+        }
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        showSearchedBeers = true
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        showSearchedBeers = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if !showSearchedBeers {
+            showSearchedBeers = true
+            tableView.reloadData()
+        }
+        searchController.dismiss(animated: true, completion: nil)
+        searchController.searchBar.resignFirstResponder()
+    }
 }
 
 extension MainViewController: NewBeerViewControllerDelegate {
     func newBeer(added beer: GBBeer) {
         beers.insert(beer, at: 0)
+        beers = GBBeerSorter.sort(beers: beers, order: .newest)
+        tableView.reloadData()
+    }
+}
+
+extension MainViewController: SortViewControllerDelegate {
+    func sortOptions(sort: GBSortOptions) {
+        self.sort = sort
+        self.beers = GBBeerSorter.sort(beers: self.beers, order: sort)
         tableView.reloadData()
     }
 }

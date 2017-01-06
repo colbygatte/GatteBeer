@@ -15,16 +15,18 @@ class BeerViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var starsView: StarsView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var notesTextField: UITextField!
+    @IBOutlet weak var notesTextView: UITextView!
     var beer: GBBeer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         
-        
         imageView.image = beer.image
         nameLabel.text = beer.name
+        notesTextView.text = beer.notes ?? ""
+        
+        starsView.setFrame()
         starsView.set(rating: beer.rating ?? 0)
         
         setupMap()
@@ -46,10 +48,7 @@ class BeerViewController: UIViewController {
 
 extension BeerViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-    
-        
         return view
     }
 }

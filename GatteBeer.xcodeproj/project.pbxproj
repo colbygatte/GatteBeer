@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90BCB6E1E20483B00D4842E /* GBBeerSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90BCB6D1E20483B00D4842E /* GBBeerSorter.swift */; };
 		E9B5818B1E188DDE00F6E68F /* GBLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5818A1E188DDE00F6E68F /* GBLocation.swift */; };
 		E9B5818D1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5818C1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift */; };
 		E9B581901E1C21B900F6E68F /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */; };
@@ -40,6 +41,7 @@
 		23EEA4770B5F31ABA1BFC1E2 /* Pods-GatteBeer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GatteBeer.release.xcconfig"; path = "Pods/Target Support Files/Pods-GatteBeer/Pods-GatteBeer.release.xcconfig"; sourceTree = "<group>"; };
 		2863C2F1735F7F3FE9A9CEB3 /* Pods-GatteBeer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GatteBeer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GatteBeer/Pods-GatteBeer.debug.xcconfig"; sourceTree = "<group>"; };
 		9F84334A7D8A226A2A0A8C62 /* Pods_GatteBeer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GatteBeer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E90BCB6D1E20483B00D4842E /* GBBeerSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GBBeerSorter.swift; path = GatteBeer/GBBeerSorter.swift; sourceTree = "<group>"; };
 		E9B581881E1841CB00F6E68F /* GatteBeer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GatteBeer.entitlements; sourceTree = "<group>"; };
 		E9B581891E18639900F6E68F /* HoustonTX.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HoustonTX.gpx; path = ../HoustonTX.gpx; sourceTree = "<group>"; };
 		E9B5818A1E188DDE00F6E68F /* GBLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBLocation.swift; sourceTree = "<group>"; };
@@ -101,6 +103,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E99230451E1FF465006C2F02 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE94391E146B2200A1D01A /* LoginViewController.swift */,
+				E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		E9FE94131E14695100A1D01A = {
 			isa = PBXGroup;
 			children = (
@@ -145,15 +156,14 @@
 		E9FE943D1E146BA700A1D01A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9B5819C1E1C969400F6E68F /* StarsView.xib */,
-				E9B5819E1E1C970E00F6E68F /* StarsView.swift */,
-				E9FE94391E146B2200A1D01A /* LoginViewController.swift */,
-				E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */,
 				E9FE94401E146BDE00A1D01A /* MainViewController.swift */,
+				E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */,
 				E9B581941E1C538200F6E68F /* SortViewController.swift */,
 				E9FE94461E147D6800A1D01A /* BeerViewController.swift */,
 				E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */,
+				E9B5819E1E1C970E00F6E68F /* StarsView.swift */,
 				E9B5818C1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift */,
+				E99230451E1FF465006C2F02 /* Login */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +174,7 @@
 				E9FE94421E146DC900A1D01A /* GBUser.swift */,
 				E9FE94441E146E4B00A1D01A /* GBBeer.swift */,
 				E9B5818A1E188DDE00F6E68F /* GBLocation.swift */,
+				E90BCB6D1E20483B00D4842E /* GBBeerSorter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -174,7 +185,7 @@
 				E9FE94231E14695100A1D01A /* Main.storyboard */,
 				E9FE94371E146ADE00A1D01A /* Login.storyboard */,
 				E9B5818F1E1C21B900F6E68F /* MainTableViewCell.xib */,
-				E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */,
+				E9B5819C1E1C969400F6E68F /* StarsView.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -322,6 +333,7 @@
 				E9B581901E1C21B900F6E68F /* MainTableViewCell.swift in Sources */,
 				E9FE94341E146A5700A1D01A /* App.swift in Sources */,
 				E9FE94361E146A8D00A1D01A /* DB.swift in Sources */,
+				E90BCB6E1E20483B00D4842E /* GBBeerSorter.swift in Sources */,
 				E9FE943C1E146B9B00A1D01A /* RegisterViewController.swift in Sources */,
 				E9B581951E1C538200F6E68F /* SortViewController.swift in Sources */,
 				E9FE94411E146BDE00A1D01A /* MainViewController.swift in Sources */,

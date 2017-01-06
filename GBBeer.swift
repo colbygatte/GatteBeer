@@ -13,8 +13,9 @@ import MapKit
 class GBBeer: NSObject {
     var id: String!
     var name: String!
-    var rating: Int?
+    var date: Date!
     
+    var rating: Int?
     var imgFile: String?
     var image: UIImage?
     var notes: String?
@@ -28,6 +29,7 @@ class GBBeer: NSObject {
         notes = values["notes"] as? String
         rating = values["rating"] as? Int
         imgFile = values["imgFile"] as? String
+        date = App.formatter.date(from: values["date"] as! String)
         
         if let locationData = values["location"] {
             location = GBLocation(snapshot: snapshot.childSnapshot(forPath: "location"))
@@ -36,7 +38,7 @@ class GBBeer: NSObject {
     
     init(id: String, values: [String: Any]) {
         self.id = id
-        
+        date = Date()
     }
     
     override func toFirebaseObject() -> Any? {
@@ -47,6 +49,7 @@ class GBBeer: NSObject {
         object["imgFile"] = imgFile
         object["rating"] = rating
         object["location"] = location?.toFirebaseObject()
+        object["date"] = App.formatter.string(from: date)
         
         return object
     }

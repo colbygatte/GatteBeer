@@ -28,15 +28,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44r-Ut-0y2">
-                                <rect key="frame" x="0.0" y="30" width="49" height="21"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7O-Bi-Z6B" customClass="StarsView" customModule="GatteBeer" customModuleProvider="target">
+                                <rect key="frame" x="14" y="29" width="105" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-mZ-OpX">
                         <rect key="frame" x="0.0" y="0.0" width="86" height="79.5"/>
@@ -59,9 +56,9 @@
             <connections>
                 <outlet property="beerImageView" destination="hjC-mZ-OpX" id="Uhr-jj-qcm"/>
                 <outlet property="beerNameLabel" destination="OLF-sw-c3h" id="Pnj-HV-PuW"/>
-                <outlet property="beerRatingLabel" destination="44r-Ut-0y2" id="EGy-dX-gEy"/>
+                <outlet property="starsView" destination="K7O-Bi-Z6B" id="aaL-uP-XLy"/>
             </connections>
-            <point key="canvasLocation" x="34" y="72.5"/>
+            <point key="canvasLocation" x="34" y="72"/>
         </tableViewCell>
     </objects>
 </document>

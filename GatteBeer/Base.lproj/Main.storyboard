@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-uj-hWw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-uj-hWw">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -41,16 +41,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="cJk-uj-hWw" secondAttribute="trailing" id="4YO-e4-Ji9"/>
-                            <constraint firstItem="cJk-uj-hWw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="KXf-hP-mjc"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cJk-uj-hWw" secondAttribute="bottom" id="YvH-f9-wOa"/>
-                            <constraint firstItem="cJk-uj-hWw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="j7S-Vo-ThT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cJk-uj-hWw" secondAttribute="bottom" id="Qh7-dk-f5j"/>
+                            <constraint firstItem="cJk-uj-hWw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="db7-e8-i6s"/>
+                            <constraint firstAttribute="trailing" secondItem="cJk-uj-hWw" secondAttribute="trailing" id="kVk-Qn-C1n"/>
+                            <constraint firstItem="cJk-uj-hWw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rym-a6-Be1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FfK-5T-mg8">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="RtV-U1-jh5">
                             <connections>
-                                <segue destination="YaE-Et-XzC" kind="show" id="eUh-8q-x9Y"/>
+                                <segue destination="YaE-Et-XzC" kind="show" identifier="Sort" id="eUh-8q-x9Y"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="r2Y-ad-8xg">
@@ -84,13 +84,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add location"/>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J4V-N2-Ce0">
-                                <rect key="frame" x="16" y="326" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ind-Mr-gno">
                                 <rect key="frame" x="16" y="466" width="343" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -116,6 +109,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3ZY-eT-oct">
+                                <rect key="frame" x="69" y="339" width="222" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -123,13 +123,13 @@
                         <outlet property="imageView" destination="ind-Mr-gno" id="d5i-Gz-IHn"/>
                         <outlet property="mapView" destination="cvC-7X-j9o" id="kog-u0-VjK"/>
                         <outlet property="nameLabel" destination="iYY-bD-EkV" id="qYf-ks-3QG"/>
-                        <outlet property="notesTextField" destination="J4V-N2-Ce0" id="O90-bb-twO"/>
+                        <outlet property="notesTextView" destination="3ZY-eT-oct" id="GYV-rw-pdU"/>
                         <outlet property="starsView" destination="gsu-rC-0sJ" id="VjC-Y4-TFa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSW-o2-lXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="966.56671664167925"/>
+            <point key="canvasLocation" x="1941.5999999999999" y="966.56671664167925"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Sd-qH-LXe">
@@ -149,7 +149,7 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
-        <!--Sort View Controller-->
+        <!--Filter-->
         <scene sceneID="u5F-i4-60i">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="YaE-Et-XzC" customClass="SortViewController" customModule="GatteBeer" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,27 +170,77 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r2F-UB-5dd" id="RRm-FP-jn5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCq-mD-TH4">
+                                <rect key="frame" x="16" y="457" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="newest" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6K-Cv-n0W">
+                                <rect key="frame" x="16" y="497" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Newest to oldest"/>
+                                <connections>
+                                    <action selector="sortButtonPressedWithSender:" destination="YaE-Et-XzC" eventType="touchUpInside" id="fkY-e8-kcR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="oldest" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lq8-0e-9g9">
+                                <rect key="frame" x="16" y="535" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Oldest to newest"/>
+                                <connections>
+                                    <action selector="sortButtonPressedWithSender:" destination="YaE-Et-XzC" eventType="touchUpInside" id="9Ud-zV-6qX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="best" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Di-Gx-vg3">
+                                <rect key="frame" x="16" y="573" width="142" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Rating: best to worst"/>
+                                <connections>
+                                    <action selector="sortButtonPressedWithSender:" destination="YaE-Et-XzC" eventType="touchUpInside" id="WZs-8I-JEE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="worst" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA7-dP-Aj1">
+                                <rect key="frame" x="16" y="611" width="142" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Rating: worst to best"/>
+                                <connections>
+                                    <action selector="sortButtonPressedWithSender:" destination="YaE-Et-XzC" eventType="touchUpInside" id="W6g-Pu-1bJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Filter" id="p0E-kh-8tt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="LVC-Vv-7xs">
+                            <connections>
+                                <action selector="doneButtonPressed" destination="YaE-Et-XzC" id="tMI-J5-08M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bestButton" destination="6Di-Gx-vg3" id="Hfm-yI-bWY"/>
+                        <outlet property="newestButton" destination="G6K-Cv-n0W" id="oqc-jB-Mg6"/>
+                        <outlet property="oldestButton" destination="Lq8-0e-9g9" id="N4g-LK-E99"/>
                         <outlet property="tableView" destination="h37-tc-aYn" id="quJ-pR-E15"/>
+                        <outlet property="worstButton" destination="jA7-dP-Aj1" id="nl9-YC-8uo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Axa-21-2yn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="309.60000000000002" y="966.56671664167925"/>
+            <point key="canvasLocation" x="33" y="967"/>
         </scene>
         <!--Add Beer-->
         <scene sceneID="NFN-Pm-p4D">
             <objects>
-                <viewController id="D91-Rz-h4I" customClass="NewBeerViewController" customModule="GatteBeer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="New" id="D91-Rz-h4I" customClass="NewBeerViewController" customModule="GatteBeer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8dR-IY-aBS"/>
                         <viewControllerLayoutGuide type="bottom" id="f6Z-n9-uvi"/>
@@ -248,12 +298,13 @@
                         <outlet property="imageView" destination="JTI-T5-xTn" id="Xzf-MQ-pSQ"/>
                         <outlet property="mapView" destination="gde-3l-vuS" id="Afh-kT-iEK"/>
                         <outlet property="nameTextField" destination="zbA-Rr-fBP" id="qQc-aj-P1r"/>
+                        <outlet property="notesTextView" destination="Bg6-1P-hV8" id="btr-fQ-Vox"/>
                         <outlet property="starsView" destination="Dv6-nv-ajI" id="rDR-IV-S89"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQo-BL-moj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512.8" y="966.56671664167925"/>
+            <point key="canvasLocation" x="972" y="967"/>
         </scene>
         <!--Choose Place View Controller-->
         <scene sceneID="tsS-dG-exN">
@@ -275,7 +326,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jj0-hx-kRq" id="OYc-Uw-ZK0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -296,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydp-Rc-cNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1514" y="1678"/>
+            <point key="canvasLocation" x="972" y="1719"/>
         </scene>
     </scenes>
     <resources>

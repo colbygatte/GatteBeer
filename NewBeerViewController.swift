@@ -41,9 +41,10 @@ class NewBeerViewController: UIViewController {
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         
-        let newBeerRef = DB.usersRef.child(App.loggedInUser.uid).childByAutoId()
-        newBeer = GBBeer(id: newBeerRef.key, values: [:])
+        // This view is launched from 3D touch quick action,
+        // wait for user to be logged in
         
+        starsView.setFrame()
         starsView.set(rating: 0)
     }
     
@@ -83,10 +84,13 @@ class NewBeerViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed() {
-        if fieldsPassCheck() {
+        if fieldsPassCheck() && App.loggedIn {
+            let newBeerRef = DB.usersRef.child(App.loggedInUser.uid).childByAutoId()
+            newBeer = GBBeer(id: newBeerRef.key, values: [:])
             newBeer.name = nameTextField.text!
             newBeer.notes = notesTextView.text
             newBeer.rating = starsView.rating
+            newBeer.location = location
             
             uploadImage()
             
@@ -142,7 +146,6 @@ extension NewBeerViewController: CLLocationManagerDelegate {
         if !locations.isEmpty && location == nil {
             let coordinate = locations[0].coordinate
             location = GBLocation(coordinate: coordinate)
-            newBeer.location = location
             
             let span = MKCoordinateSpanMake(0.02, 0.02)
             let region = MKCoordinateRegionMake(coordinate, span)
