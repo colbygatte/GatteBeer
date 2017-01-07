@@ -20,7 +20,6 @@ class BeerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
         
         imageView.image = beer.image
         nameLabel.text = beer.name
@@ -32,23 +31,29 @@ class BeerViewController: UIViewController {
         setupMap()
     }
     
+    @IBAction func shareButtonPressed() {
+        
+        let texts = ["", "THIS BEER IS NASTY!", "Pretty gross. Jus' saying.", "Pretty good if you don't have anything else.", "Ooh, yum.", "5 STARS!!!"]
+        
+        let items: [Any] = [beer.name + "\n" + texts[beer.rating ?? 0], beer.image]
+        
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = view
+        activityViewController.excludedActivityTypes = [.addToReadingList, .airDrop, .addToReadingList, .openInIBooks, .postToFlickr, .saveToCameraRoll, .postToFacebook]
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     func setupMap() {
         if let location = beer.location {
             let annotation = MKPointAnnotation()
             annotation.coordinate = location.coordinate
-            annotation.title = beer.name
+            annotation.title = beer.location?.place
             mapView.addAnnotation(annotation)
             
             let span = MKCoordinateSpanMake(0.02, 0.02)
             let region = MKCoordinateRegionMake(location.coordinate, span)
             mapView.setRegion(region, animated: true)
         }
-    }
-}
-
-extension BeerViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-        return view
     }
 }

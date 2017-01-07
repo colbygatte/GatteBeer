@@ -178,8 +178,6 @@ extension NewBeerViewController: ChoosePlaceViewControllerDelegate {
         annotation.coordinate = mapItem.placemark.coordinate
         annotation.title = mapItem.name
         
-        //let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
-        
         mapView.addAnnotation(annotation)
         
     }
