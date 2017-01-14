@@ -10,16 +10,23 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import CoreLocation
+import CoreData
 
 class MainViewController: UIViewController {
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var beers: [GBBeer] = []
-    var searchedBeers: [GBBeer] = []
+    
+    // MARK: - Properties
+    var beers: [Beer] = []
+    var searchedBeers: [Beer] = []
     var showSearchedBeers: Bool = false
-    var sort: GBSortOptions!
     var searchController: UISearchController!
+    var fetchedResultsController: NSFetchedResultsController<Beer>!
+    
 
+    // MARK: - View Life Cycle
     override func viewWillDisappear(_ animated: Bool) {
         searchController.dismiss(animated: false, completion: nil)
     }
@@ -27,8 +34,23 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "GatteBeer"
-        sort = .newest
+        // Sort descriptors
+        let dateSort = NSSortDescriptor(key: #keyPath(Beer.date), ascending: true)
         
+        // Fetch request
+        let fetchRequest: NSFetchRequest<Beer> = Beer.fetchRequest()
+        fetchRequest.sortDescriptors = [dateSort]
+        
+        // Fetch results controller
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: App.coreDataStack.managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Fetching error: \(error), \(error.userInfo)")
+        }
+        
+        // Set up UISearchController
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -39,32 +61,17 @@ class MainViewController: UIViewController {
         searchController.definesPresentationContext = true
         searchController.hidesNavigationBarDuringPresentation = false
         
+        // Set up UITableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainCell")
         tableView.rowHeight = 80.0
         tableView.tableHeaderView = searchController.searchBar
-        
-        
-        App.runWhenLoggedIn {
-            self.begin()
-        }
     }
-    
-    func begin() {
-        DB.userRef.child("beers").queryOrderedByKey().observeSingleEvent(of: .value, with: { snap in
-            for beerData in snap.children.reversed() {
-                let beerSnap = beerData as! FIRDataSnapshot
-                let beer = GBBeer(snapshot: beerSnap)
-                self.beers.append(beer)
-            }
-            
-            DispatchQueue.main.async {
-                self.beers = GBBeerSorter.sort(beers: self.beers, order: self.sort)
-                self.tableView.reloadData()
-            }
-        })
-    }
+}
+
+// MARK: - Helper methods
+extension MainViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "New" {
@@ -79,45 +86,22 @@ class MainViewController: UIViewController {
             } else {
                 vc.beer = beers[row]
             }
-        } else if segue.identifier == "Sort" {
-            let vc = segue.destination as! SortViewController
-            vc.sort = sort
-            vc.delegate = self
         }
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if showSearchedBeers && searchController.searchBar.text != "" {
-            return searchedBeers.count
-        }
-        return beers.count
+        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let beer: GBBeer
-        if showSearchedBeers && searchController.searchBar.text != "" {
-            beer = searchedBeers[indexPath.row]
-        } else {
-            beer = beers[indexPath.row]
-        }
+        let beer = fetchedResultsController.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         cell.imageView?.image = nil
-        
-        if beer.image != nil {
-            cell.beerImageView.image = beer.image
-        } else if beer.imgFile != nil {
-            FIRStorage.storage().reference(forURL: DB.storageURL + beer.imgFile!).data(withMaxSize: 1000 * 10000, completion: { data, error in
-                if error == nil && data != nil {
-                    beer.image = UIImage(data: data!)
-                    DispatchQueue.main.async {
-                        cell.beerImageView.image = beer.image
-                    }
-                }
-            })
-        }
         
         cell.beer = beer
         cell.setup()
@@ -126,6 +110,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "View", sender: nil)
@@ -134,16 +119,15 @@ extension MainViewController: UITableViewDelegate {
 }
 
 
-// MARK: Search
-
+// MARK: - Search
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
         if let searchString = searchController.searchBar.text {
             searchedBeers = beers.filter({ beer in
-                let bools = [(beer.name.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil),
-                             (beer.location?.city?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil),
-                             (beer.location?.place?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil)]
+                let bools = [(beer.name?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil)]
+                             //(beer.location?.city?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil),
+                             //(beer.location?.place?.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil)]
                 if bools.contains(true) {
                     return true
                 } else {
@@ -182,17 +166,10 @@ extension MainViewController: UISearchBarDelegate {
 }
 
 extension MainViewController: NewBeerViewControllerDelegate {
-    func newBeer(added beer: GBBeer) {
+    func newBeer(addedBeer beer: Beer) {
         beers.insert(beer, at: 0)
-        beers = GBBeerSorter.sort(beers: beers, order: .newest)
         tableView.reloadData()
     }
 }
 
-extension MainViewController: SortViewControllerDelegate {
-    func sortOptions(sort: GBSortOptions) {
-        self.sort = sort
-        self.beers = GBBeerSorter.sort(beers: self.beers, order: sort)
-        tableView.reloadData()
-    }
-}
+

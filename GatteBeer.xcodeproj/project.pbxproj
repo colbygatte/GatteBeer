@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E90BCB6E1E20483B00D4842E /* GBBeerSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90BCB6D1E20483B00D4842E /* GBBeerSorter.swift */; };
-		E9B5818B1E188DDE00F6E68F /* GBLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5818A1E188DDE00F6E68F /* GBLocation.swift */; };
+		E939A8121E2AC5F300072E02 /* GatteBeer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E939A8101E2AC5F300072E02 /* GatteBeer.xcdatamodeld */; };
+		E939A8141E2AC68600072E02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939A8131E2AC68600072E02 /* CoreDataStack.swift */; };
 		E9B5818D1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5818C1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift */; };
 		E9B581901E1C21B900F6E68F /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */; };
 		E9B581911E1C21B900F6E68F /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B5818F1E1C21B900F6E68F /* MainTableViewCell.xib */; };
-		E9B581951E1C538200F6E68F /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B581941E1C538200F6E68F /* SortViewController.swift */; };
 		E9B5819A1E1C968100F6E68F /* star_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B581981E1C968100F6E68F /* star_gray.png */; };
 		E9B5819B1E1C968100F6E68F /* star_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B581991E1C968100F6E68F /* star_red.png */; };
 		E9B5819D1E1C969400F6E68F /* StarsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B5819C1E1C969400F6E68F /* StarsView.xib */; };
@@ -25,13 +24,7 @@
 		E9FE942A1E14695100A1D01A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94281E14695100A1D01A /* LaunchScreen.storyboard */; };
 		E9FE94321E14696D00A1D01A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94311E14696D00A1D01A /* GoogleService-Info.plist */; };
 		E9FE94341E146A5700A1D01A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94331E146A5700A1D01A /* App.swift */; };
-		E9FE94361E146A8D00A1D01A /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94351E146A8D00A1D01A /* DB.swift */; };
-		E9FE94381E146ADE00A1D01A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FE94371E146ADE00A1D01A /* Login.storyboard */; };
-		E9FE943A1E146B2200A1D01A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94391E146B2200A1D01A /* LoginViewController.swift */; };
-		E9FE943C1E146B9B00A1D01A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */; };
 		E9FE94411E146BDE00A1D01A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94401E146BDE00A1D01A /* MainViewController.swift */; };
-		E9FE94431E146DC900A1D01A /* GBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94421E146DC900A1D01A /* GBUser.swift */; };
-		E9FE94451E146E4B00A1D01A /* GBBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94441E146E4B00A1D01A /* GBBeer.swift */; };
 		E9FE94471E147D6800A1D01A /* BeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94461E147D6800A1D01A /* BeerViewController.swift */; };
 		E9FE94491E147D7600A1D01A /* NewBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */; };
 		FA4FBED1F46128C8AA3D4FC7 /* Pods_GatteBeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F84334A7D8A226A2A0A8C62 /* Pods_GatteBeer.framework */; };
@@ -41,14 +34,13 @@
 		23EEA4770B5F31ABA1BFC1E2 /* Pods-GatteBeer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GatteBeer.release.xcconfig"; path = "Pods/Target Support Files/Pods-GatteBeer/Pods-GatteBeer.release.xcconfig"; sourceTree = "<group>"; };
 		2863C2F1735F7F3FE9A9CEB3 /* Pods-GatteBeer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GatteBeer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GatteBeer/Pods-GatteBeer.debug.xcconfig"; sourceTree = "<group>"; };
 		9F84334A7D8A226A2A0A8C62 /* Pods_GatteBeer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GatteBeer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E90BCB6D1E20483B00D4842E /* GBBeerSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GBBeerSorter.swift; path = GatteBeer/GBBeerSorter.swift; sourceTree = "<group>"; };
+		E939A8111E2AC5F300072E02 /* GatteBeer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GatteBeer.xcdatamodel; sourceTree = "<group>"; };
+		E939A8131E2AC68600072E02 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E9B581881E1841CB00F6E68F /* GatteBeer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GatteBeer.entitlements; sourceTree = "<group>"; };
 		E9B581891E18639900F6E68F /* HoustonTX.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HoustonTX.gpx; path = ../HoustonTX.gpx; sourceTree = "<group>"; };
-		E9B5818A1E188DDE00F6E68F /* GBLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBLocation.swift; sourceTree = "<group>"; };
 		E9B5818C1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePlaceViewController.swift; sourceTree = "<group>"; };
 		E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		E9B5818F1E1C21B900F6E68F /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
-		E9B581941E1C538200F6E68F /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		E9B581981E1C968100F6E68F /* star_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_gray.png; sourceTree = "<group>"; };
 		E9B581991E1C968100F6E68F /* star_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_red.png; sourceTree = "<group>"; };
 		E9B5819C1E1C969400F6E68F /* StarsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StarsView.xib; sourceTree = "<group>"; };
@@ -63,13 +55,7 @@
 		E9FE942B1E14695100A1D01A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9FE94311E14696D00A1D01A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9FE94331E146A5700A1D01A /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		E9FE94351E146A8D00A1D01A /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
-		E9FE94371E146ADE00A1D01A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = GatteBeer/Login.storyboard; sourceTree = "<group>"; };
-		E9FE94391E146B2200A1D01A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = GatteBeer/LoginViewController.swift; sourceTree = "<group>"; };
-		E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = GatteBeer/RegisterViewController.swift; sourceTree = "<group>"; };
 		E9FE94401E146BDE00A1D01A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		E9FE94421E146DC900A1D01A /* GBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBUser.swift; sourceTree = "<group>"; };
-		E9FE94441E146E4B00A1D01A /* GBBeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GBBeer.swift; sourceTree = "<group>"; };
 		E9FE94461E147D6800A1D01A /* BeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerViewController.swift; sourceTree = "<group>"; };
 		E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBeerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,13 +89,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E99230451E1FF465006C2F02 /* Login */ = {
+		E939A8151E2AC97D00072E02 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E9FE94391E146B2200A1D01A /* LoginViewController.swift */,
-				E9FE943B1E146B9B00A1D01A /* RegisterViewController.swift */,
+				E939A8161E2AC98800072E02 /* MainTableViewCell */,
+				E9FE94401E146BDE00A1D01A /* MainViewController.swift */,
 			);
-			name = Login;
+			name = MainViewController;
+			sourceTree = "<group>";
+		};
+		E939A8161E2AC98800072E02 /* MainTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */,
+				E9B5818F1E1C21B900F6E68F /* MainTableViewCell.xib */,
+			);
+			name = MainTableViewCell;
+			sourceTree = "<group>";
+		};
+		E939A8171E2AC9A400072E02 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				E939A8181E2AC9AC00072E02 /* StarsView */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		E939A8181E2AC9AC00072E02 /* StarsView */ = {
+			isa = PBXGroup;
+			children = (
+				E9B5819E1E1C970E00F6E68F /* StarsView.swift */,
+				E9B5819C1E1C969400F6E68F /* StarsView.xib */,
+			);
+			name = StarsView;
 			sourceTree = "<group>";
 		};
 		E9FE94131E14695100A1D01A = {
@@ -117,7 +129,6 @@
 			children = (
 				E9FE943F1E146BC500A1D01A /* Storyboards */,
 				E9FE943D1E146BA700A1D01A /* Controllers */,
-				E9FE943E1E146BB300A1D01A /* Models */,
 				E9FE941E1E14695100A1D01A /* GatteBeer */,
 				E9FE941D1E14695100A1D01A /* Products */,
 				4C71572C5031B7F9216EECD4 /* Pods */,
@@ -137,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				E9FE94331E146A5700A1D01A /* App.swift */,
-				E9FE94351E146A8D00A1D01A /* DB.swift */,
 				E9FE941F1E14695100A1D01A /* AppDelegate.swift */,
 				E9FE94261E14695100A1D01A /* Assets.xcassets */,
 				E9FE94281E14695100A1D01A /* LaunchScreen.storyboard */,
@@ -149,6 +159,8 @@
 				E9B581991E1C968100F6E68F /* star_red.png */,
 				E9B581A01E1CA76200F6E68F /* beer.png */,
 				E9B581A21E1CAE6F00F6E68F /* camera.png */,
+				E939A8101E2AC5F300072E02 /* GatteBeer.xcdatamodeld */,
+				E939A8131E2AC68600072E02 /* CoreDataStack.swift */,
 			);
 			path = GatteBeer;
 			sourceTree = "<group>";
@@ -156,36 +168,19 @@
 		E9FE943D1E146BA700A1D01A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9FE94401E146BDE00A1D01A /* MainViewController.swift */,
-				E9B5818E1E1C21B900F6E68F /* MainTableViewCell.swift */,
-				E9B581941E1C538200F6E68F /* SortViewController.swift */,
+				E939A8171E2AC9A400072E02 /* Nibs */,
+				E939A8151E2AC97D00072E02 /* MainViewController */,
 				E9FE94461E147D6800A1D01A /* BeerViewController.swift */,
 				E9FE94481E147D7600A1D01A /* NewBeerViewController.swift */,
-				E9B5819E1E1C970E00F6E68F /* StarsView.swift */,
 				E9B5818C1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift */,
-				E99230451E1FF465006C2F02 /* Login */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		E9FE943E1E146BB300A1D01A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E9FE94421E146DC900A1D01A /* GBUser.swift */,
-				E9FE94441E146E4B00A1D01A /* GBBeer.swift */,
-				E9B5818A1E188DDE00F6E68F /* GBLocation.swift */,
-				E90BCB6D1E20483B00D4842E /* GBBeerSorter.swift */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		E9FE943F1E146BC500A1D01A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				E9FE94231E14695100A1D01A /* Main.storyboard */,
-				E9FE94371E146ADE00A1D01A /* Login.storyboard */,
-				E9B5818F1E1C21B900F6E68F /* MainTableViewCell.xib */,
-				E9B5819C1E1C969400F6E68F /* StarsView.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -270,7 +265,6 @@
 				E9B5819B1E1C968100F6E68F /* star_red.png in Resources */,
 				E9FE94271E14695100A1D01A /* Assets.xcassets in Resources */,
 				E9B5819D1E1C969400F6E68F /* StarsView.xib in Resources */,
-				E9FE94381E146ADE00A1D01A /* Login.storyboard in Resources */,
 				E9FE94251E14695100A1D01A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,18 +326,12 @@
 			files = (
 				E9B581901E1C21B900F6E68F /* MainTableViewCell.swift in Sources */,
 				E9FE94341E146A5700A1D01A /* App.swift in Sources */,
-				E9FE94361E146A8D00A1D01A /* DB.swift in Sources */,
-				E90BCB6E1E20483B00D4842E /* GBBeerSorter.swift in Sources */,
-				E9FE943C1E146B9B00A1D01A /* RegisterViewController.swift in Sources */,
-				E9B581951E1C538200F6E68F /* SortViewController.swift in Sources */,
+				E939A8141E2AC68600072E02 /* CoreDataStack.swift in Sources */,
+				E939A8121E2AC5F300072E02 /* GatteBeer.xcdatamodeld in Sources */,
 				E9FE94411E146BDE00A1D01A /* MainViewController.swift in Sources */,
-				E9FE943A1E146B2200A1D01A /* LoginViewController.swift in Sources */,
-				E9B5818B1E188DDE00F6E68F /* GBLocation.swift in Sources */,
 				E9FE94201E14695100A1D01A /* AppDelegate.swift in Sources */,
 				E9B5818D1E1B4EDC00F6E68F /* ChoosePlaceViewController.swift in Sources */,
 				E9B5819F1E1C970E00F6E68F /* StarsView.swift in Sources */,
-				E9FE94451E146E4B00A1D01A /* GBBeer.swift in Sources */,
-				E9FE94431E146DC900A1D01A /* GBUser.swift in Sources */,
 				E9FE94471E147D6800A1D01A /* BeerViewController.swift in Sources */,
 				E9FE94491E147D7600A1D01A /* NewBeerViewController.swift in Sources */,
 			);
@@ -517,6 +505,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E939A8101E2AC5F300072E02 /* GatteBeer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E939A8111E2AC5F300072E02 /* GatteBeer.xcdatamodel */,
+			);
+			currentVersion = E939A8111E2AC5F300072E02 /* GatteBeer.xcdatamodel */;
+			path = GatteBeer.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E9FE94141E14695100A1D01A /* Project object */;
 }

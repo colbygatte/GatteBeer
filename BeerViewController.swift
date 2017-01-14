@@ -16,17 +16,17 @@ class BeerViewController: UIViewController {
     @IBOutlet weak var starsView: StarsView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
-    var beer: GBBeer!
+    var beer: Beer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = beer.image
+        //imageView.image = beer.image
         nameLabel.text = beer.name
         notesTextView.text = beer.notes ?? ""
         
         starsView.setFrame()
-        starsView.set(rating: beer.rating ?? 0)
+        starsView.set(rating: Int(beer.rating))
         
         setupMap()
     }
@@ -35,7 +35,7 @@ class BeerViewController: UIViewController {
         
         let texts = ["", "THIS BEER IS NASTY!", "Pretty gross. Jus' saying.", "Pretty good if you don't have anything else.", "Ooh, yum.", "5 STARS!!!"]
         
-        let items: [Any] = [beer.name + "\n" + texts[beer.rating ?? 0], beer.image]
+        let items: [Any] = [beer.name! + "\n" + texts[Int(beer.rating)]]
         
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = view
@@ -46,14 +46,14 @@ class BeerViewController: UIViewController {
     
     func setupMap() {
         if let location = beer.location {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location.coordinate
-            annotation.title = beer.location?.place
-            mapView.addAnnotation(annotation)
-            
-            let span = MKCoordinateSpanMake(0.02, 0.02)
-            let region = MKCoordinateRegionMake(location.coordinate, span)
-            mapView.setRegion(region, animated: true)
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = location.coordinate
+//            annotation.title = beer.location?.place
+//            mapView.addAnnotation(annotation)
+//            
+//            let span = MKCoordinateSpanMake(0.02, 0.02)
+//            let region = MKCoordinateRegionMake(location.coordinate, span)
+//            mapView.setRegion(region, animated: true)
         }
     }
 }

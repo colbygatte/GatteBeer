@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseStorage
+import CoreData
 import MapKit
 import CoreLocation
 
 protocol NewBeerViewControllerDelegate {
-    func newBeer(added beer: GBBeer)
+    func newBeer(addedBeer beer: Beer)
 }
 
 class NewBeerViewController: UIViewController {
@@ -26,9 +25,9 @@ class NewBeerViewController: UIViewController {
     var imagePickerController: UIImagePickerController!
     var originalImage: UIImage?
     var locationManager: CLLocationManager!
-    var location: GBLocation?
+    //var location: Location?
     var delegate: NewBeerViewControllerDelegate?
-    var newBeer: GBBeer!
+    var newBeer: Beer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,42 +61,21 @@ class NewBeerViewController: UIViewController {
         return check
     }
     
-    func uploadImage() {
-        let imageName = newBeer.id
-        if originalImage != nil {
-            newBeer.imgFile = imageName! + ".jpg"
-            let storageRef = FIRStorage.storage().reference(forURL: "gs://gattebeer.appspot.com/beer/" + imageName! + ".jpg")
-            if originalImage != nil {
-                if let imageData = UIImageJPEGRepresentation(originalImage!, 0.01) {
-                    newBeer.image = UIImage(data: imageData)
-                    
-                    storageRef.put(imageData, metadata: nil) { metadata, error in
-                        if error == nil {
-                            
-                        } else {
-                            print(error.debugDescription)
-                        }
-                    }
-                }
-            }
-        }
-    }
     
     @IBAction func submitButtonPressed() {
-        if fieldsPassCheck() && App.loggedIn {
-            let newBeerRef = DB.usersRef.child(App.loggedInUser.uid).childByAutoId()
-            newBeer = GBBeer(id: newBeerRef.key, values: [:])
-            newBeer.name = nameTextField.text!
-            newBeer.notes = notesTextView.text
-            newBeer.rating = starsView.rating
-            newBeer.location = location
-            
-            uploadImage()
-            
-            DB.save(object: newBeer, userPath: "beers/" + newBeer.id)
-            delegate?.newBeer(added: newBeer)
-            _ = navigationController?.popViewController(animated: true)
-        }
+        guard fieldsPassCheck() else { return }
+
+        let entity = Beer.entity()
+        let beer = Beer(entity: entity, insertInto: App.coreDataStack.managedContext)
+        
+        beer.name = nameTextField.text!
+        beer.notes = notesTextView.text
+        beer.rating = Int16(starsView.rating)
+        
+        App.coreDataStack.saveContext()
+        
+        delegate?.newBeer(addedBeer: beer)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     @IBAction func pictureButtonPressed() {
@@ -128,7 +106,7 @@ class NewBeerViewController: UIViewController {
         vc.coordinate = coordinate
         vc.mapView = mapView
         vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        //navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -143,9 +121,9 @@ extension NewBeerViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension NewBeerViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if !locations.isEmpty && location == nil {
+        /*if !locations.isEmpty && location == nil {
             let coordinate = locations[0].coordinate
-            location = GBLocation(coordinate: coordinate)
+            //location = GBLocation(coordinate: coordinate)
             
             let span = MKCoordinateSpanMake(0.02, 0.02)
             let region = MKCoordinateRegionMake(coordinate, span)
@@ -159,20 +137,19 @@ extension NewBeerViewController: CLLocationManagerDelegate {
                     
                     // Keys to placemaark?.addressDictionary
                     // Street, Country, State, City, CountryCode
-                    self.location?.city = placemark?.addressDictionary?["City"] as! String?
-                    self.location?.country = placemark?.addressDictionary?["Country"] as! String?
-                    self.location?.state = placemark?.addressDictionary?["State"] as! String?
+                    //self.location?.city = placemark?.addressDictionary?["City"] as! String?
+                    //self.location?.country = placemark?.addressDictionary?["Country"] as! String?
+                    //self.location?.state = placemark?.addressDictionary?["State"] as! String?
                 } else {
                     print(error?.localizedDescription)
                 }
             })
-        }
+        }*/
     }
 }
 
 extension NewBeerViewController: ChoosePlaceViewControllerDelegate {
     func placeChosen(mapItem: MKMapItem) {
-        location?.mapItem = mapItem
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = mapItem.placemark.coordinate

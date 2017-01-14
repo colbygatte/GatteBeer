@@ -13,7 +13,7 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var beerNameLabel: UILabel!
     @IBOutlet weak var starsView: StarsView!
     
-    var beer: GBBeer!
+    var beer: Beer!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,17 +27,10 @@ class MainTableViewCell: UITableViewCell {
     
     
     func setup() {
-        if let rating = beer.rating {
-            starsView.set(rating: rating)
-        }
+        starsView.set(rating: Int(beer.rating))
         
         beerNameLabel.text = beer.name
         beerNameLabel.sizeToFit()
         
-        if let image = beer.image {
-            beerImageView.image = image
-        } else {
-            beerImageView.image = App.icon
-        }
     }
 }
