@@ -15,7 +15,14 @@ class StarsView: UIView {
     @IBOutlet weak var star3ImageView: UIImageView!
     @IBOutlet weak var star4ImageView: UIImageView!
     @IBOutlet weak var star5ImageView: UIImageView!
-    var editable: Bool = true
+    var editable: Bool = true {
+        didSet {
+            // This makes the stars clickable, for example, in the MainTableViewCell
+            for imageView in imageViews {
+                imageView.isUserInteractionEnabled = editable
+            }
+        }
+    }
     
     var imageViews: [UIImageView]!
     var rating: Int!

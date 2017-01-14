@@ -8,9 +8,7 @@
 
 import UIKit
 
-protocol SortViewControllerDelegate {
-    func sortOptions(sort: GBSortOptions)
-}
+
 
 class SortViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -20,7 +18,6 @@ class SortViewController: UIViewController {
     @IBOutlet weak var worstButton: UIButton!
     var sort: GBSortOptions!
     var buttons: [GBSortOptions: UIButton]!
-    var delegate: SortViewControllerDelegate?
     
     var cities: [String]!
     var selectedCity: String?
@@ -57,7 +54,7 @@ class SortViewController: UIViewController {
             selectedCity = cities[indexPath.row]
         }
         
-        delegate?.sortOptions(sort: sort)
+        //delegate?.sortOptions(sort: sort)
         
         _ = navigationController?.popViewController(animated: true)
     }

@@ -19,15 +19,23 @@ class MainViewController: UIViewController {
     var showSearchedBeers: Bool = false
     var sort: GBSortOptions!
     var searchController: UISearchController!
+    var sortView: SortView!
 
     override func viewWillDisappear(_ animated: Bool) {
         searchController.dismiss(animated: false, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "GatteBeer"
         sort = .newest
+        sortView = SortView()
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -66,42 +74,61 @@ class MainViewController: UIViewController {
         })
     }
     
+    @IBAction func sortButtonPressed() {
+        sortView.frame = view.frame
+        sortView.alpha = 0.0
+        navigationController?.view.addSubview(sortView)
+        sortView.setFrame()
+        sortView.delegate = self
+        
+        UIView.animate(withDuration: TimeInterval(0.2), animations: {
+            self.sortView.alpha = 1.0
+        })
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "New" {
             let vc = segue.destination as! NewBeerViewController
             vc.delegate = self
         } else if segue.identifier == "View" {
-            let row = (tableView.indexPathForSelectedRow?.row)!
+            let indexPath = (tableView.indexPathForSelectedRow)!
             
             let vc = segue.destination as! BeerViewController
-            if showSearchedBeers && searchController.searchBar.text != "" {
-                vc.beer = searchedBeers[row]
-            } else {
-                vc.beer = beers[row]
-            }
-        } else if segue.identifier == "Sort" {
-            let vc = segue.destination as! SortViewController
-            vc.sort = sort
-            vc.delegate = self
+            vc.beer = getBeer(indexPath: indexPath)
         }
     }
-}
-
-extension MainViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func getBeer(indexPath: IndexPath) -> GBBeer {
+        if showSearchedBeers && searchController.searchBar.text != "" {
+            return searchedBeers[indexPath.row]
+        } else {
+            return beers[indexPath.row]
+        }
+    }
+    
+    func removeBeer(indexPath: IndexPath) {
+        if showSearchedBeers && searchController.searchBar.text != "" {
+            searchedBeers.remove(at: indexPath.row)
+        } else {
+            beers.remove(at: indexPath.row)
+        }
+    }
+    
+    func getBeerCount() -> Int {
         if showSearchedBeers && searchController.searchBar.text != "" {
             return searchedBeers.count
         }
         return beers.count
     }
+}
+
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return getBeerCount()
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let beer: GBBeer
-        if showSearchedBeers && searchController.searchBar.text != "" {
-            beer = searchedBeers[indexPath.row]
-        } else {
-            beer = beers[indexPath.row]
-        }
+        let beer = getBeer(indexPath: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         cell.imageView?.image = nil
@@ -120,7 +147,7 @@ extension MainViewController: UITableViewDataSource {
         }
         
         cell.beer = beer
-        cell.setup()
+        cell.setup(row: indexPath.row)
         
         return cell
     }
@@ -131,6 +158,14 @@ extension MainViewController: UITableViewDelegate {
         performSegue(withIdentifier: "View", sender: nil)
     }
     
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            DB.delete(beer: getBeer(indexPath: indexPath))
+            removeBeer(indexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }
 
 
@@ -189,10 +224,14 @@ extension MainViewController: NewBeerViewControllerDelegate {
     }
 }
 
-extension MainViewController: SortViewControllerDelegate {
+extension MainViewController: SortViewDelegate {
+    // This is a quick action so we make sure to run it after
+    // the user is logged in
     func sortOptions(sort: GBSortOptions) {
-        self.sort = sort
-        self.beers = GBBeerSorter.sort(beers: self.beers, order: sort)
-        tableView.reloadData()
+        App.runWhenLoggedIn() {
+            self.sort = sort
+            self.beers = GBBeerSorter.sort(beers: self.beers, order: sort)
+            self.tableView.reloadData()
+        }
     }
 }

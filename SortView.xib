@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SortView" customModule="GatteBeer" customModuleProvider="target">
+            <connections>
+                <outlet property="alphaView" destination="aNo-0o-3OY" id="oqq-5D-M72"/>
+                <outlet property="best" destination="ftN-9l-CQz" id="2lx-Kf-RmK"/>
+                <outlet property="bottomView" destination="c8z-4M-ZXz" id="j9T-DG-xye"/>
+                <outlet property="newest" destination="1cu-Q1-zHc" id="3Oo-bP-5u3"/>
+                <outlet property="oldest" destination="Fg4-Cq-WkA" id="Ayw-1M-CWY"/>
+                <outlet property="sortView" destination="1TM-Gx-suS" id="GXp-vH-YfO"/>
+                <outlet property="topView" destination="pnY-nt-Err" id="see-WI-93N"/>
+                <outlet property="worst" destination="fjY-EE-kqv" id="87M-3w-e9U"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1TM-Gx-suS">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popupbackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="uLc-f7-jiQ">
+                    <rect key="frame" x="0.0" y="132" width="375" height="402"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="uLc-f7-jiQ" secondAttribute="height" multiplier="125:134" id="R5h-zB-Vvc"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9y-bU-ZSB">
+                    <rect key="frame" x="41" y="186" width="292" height="294"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="newest" image="newesttooldest.png" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-Q1-zHc">
+                            <rect key="frame" x="2" y="147" width="290" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="oldest" image="oldesttonewest.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fg4-Cq-WkA">
+                            <rect key="frame" x="2" y="216" width="290" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="worst" image="worsttobest.png" translatesAutoresizingMaskIntoConstraints="NO" id="fjY-EE-kqv">
+                            <rect key="frame" x="2" y="78" width="290" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="best" image="besttoworst.png" translatesAutoresizingMaskIntoConstraints="NO" id="ftN-9l-CQz">
+                            <rect key="frame" x="2" y="8" width="290" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c8z-4M-ZXz">
+                    <rect key="frame" x="0.0" y="488" width="375" height="179"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnY-nt-Err">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="178"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="uLc-f7-jiQ" firstAttribute="centerY" secondItem="1TM-Gx-suS" secondAttribute="centerY" id="4d1-ck-eMW"/>
+                <constraint firstAttribute="trailing" secondItem="uLc-f7-jiQ" secondAttribute="trailing" id="7R6-7M-0EZ"/>
+                <constraint firstItem="uLc-f7-jiQ" firstAttribute="leading" secondItem="1TM-Gx-suS" secondAttribute="leading" id="n0z-TA-5EC"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="-366.5" y="-226.5"/>
+        </view>
+        <view alpha="0.40000000000000002" contentMode="scaleToFill" id="aNo-0o-3OY">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.56687021255493164" green="0.65380239486694336" blue="0.70204836130142212" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="128" y="-225"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="besttoworst.png" width="906" height="201"/>
+        <image name="newesttooldest.png" width="906" height="201"/>
+        <image name="oldesttonewest.png" width="906" height="201"/>
+        <image name="popupbackground.png" width="828" height="856"/>
+        <image name="worsttobest.png" width="906" height="201"/>
+    </resources>
+</document>

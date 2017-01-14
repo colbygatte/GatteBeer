@@ -41,11 +41,19 @@ class NewBeerViewController: UIViewController {
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        view.addGestureRecognizer(tap)
+        
         // This view is launched from 3D touch quick action,
         // wait for user to be logged in
         
         starsView.setFrame()
         starsView.set(rating: 0)
+    }
+    
+    func tapped() {
+        nameTextField.resignFirstResponder()
+        notesTextView.resignFirstResponder()
     }
     
     func fieldsPassCheck() -> Bool {
@@ -123,7 +131,7 @@ class NewBeerViewController: UIViewController {
     }
 
     
-    func sendToChoosePlace(coordinate: CLLocationCoordinate2D) {
+    @IBAction func sendToChoosePlace(coordinate: CLLocationCoordinate2D) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChoosePlace") as! ChoosePlaceViewController
         vc.coordinate = coordinate
         vc.mapView = mapView
@@ -171,8 +179,9 @@ extension NewBeerViewController: CLLocationManagerDelegate {
 }
 
 extension NewBeerViewController: ChoosePlaceViewControllerDelegate {
-    func placeChosen(mapItem: MKMapItem) {
-        location?.mapItem = mapItem
+    func placeChosen(mapItem: MKMapItem, location: GBLocation) {
+        self.location = location
+        self.location?.mapItem = mapItem
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = mapItem.placemark.coordinate

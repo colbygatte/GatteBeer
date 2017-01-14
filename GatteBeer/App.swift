@@ -16,10 +16,15 @@ struct App {
     static var apnToken: String?
     static var quickLaunch: String?
     static var formatter = DateFormatter()
+    static var containerViewController: ContainerViewController!
     
     static var icon: UIImage!
+    static var transparentBeer: UIImage!
     static var starRed: UIImage!
     static var starGray: UIImage!
+    
+    static var randomBackgroundColors1 = ["91A7B3", "49616F", "777B7C", "863B3B"]
+    static var randomBackgroundColors2 = ["5F5F5F", "788C97", "41545F", "B65F5F"]
     
     static var afterLoginBlocks: [(()->())] = []
     

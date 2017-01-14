@@ -18,6 +18,10 @@ class DB {
     static func save(object: NSObject, userPath: String) {
         DB.usersRef.child(App.loggedInUser.uid).child(userPath).setValue(object.toFirebaseObject())
     }
+    
+    static func delete(beer: GBBeer) {
+        DB.usersRef.child(App.loggedInUser.uid).child("beers").child(beer.id).setValue(nil)
+    }
 }
 
 

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol ChoosePlaceViewControllerDelegate {
-    func placeChosen(mapItem: MKMapItem)
+    func placeChosen(mapItem: MKMapItem, location: GBLocation)
 }
 
 class ChoosePlaceViewController: UIViewController {
@@ -58,7 +58,12 @@ extension ChoosePlaceViewController: UITableViewDataSource {
 extension ChoosePlaceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mapItem = mapItems[indexPath.row]
-        delegate?.placeChosen(mapItem: mapItem)
+        
+        let location = GBLocation(coordinate: mapItem.placemark.coordinate)
+        location.place = mapItem.name
+        location.mapItem = mapItem
+        
+        delegate?.placeChosen(mapItem: mapItem, location: location)
         _ = navigationController?.popViewController(animated: true)
     }
 }

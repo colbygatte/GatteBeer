@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import MapKit
+import AddressBook
 
 class GBLocation: NSObject {
     var id: String!
@@ -40,7 +41,7 @@ class GBLocation: NSObject {
         coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         
         if snapshot.hasChild("mapItem") {
-            let placemark = MKPlacemark(coordinate: coordinate)
+            let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
             
             let mapItemValues = snapshot.childSnapshot(forPath: "mapItem").value as! [String: Any]
@@ -49,6 +50,8 @@ class GBLocation: NSObject {
             if let urlString = mapItemValues["url"] as! String? {
                 mapItem.url = URL(string: urlString)
             }
+            
+            self.mapItem = mapItem
         }
     }
     

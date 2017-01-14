@@ -12,6 +12,7 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var beerImageView: UIImageView!
     @IBOutlet weak var beerNameLabel: UILabel!
     @IBOutlet weak var starsView: StarsView!
+    var row: Int!
     
     var beer: GBBeer!
     
@@ -22,11 +23,21 @@ class MainTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        //super.setSelected(selected, animated: animated)
     }
     
     
-    func setup() {
+    func setup(row: Int) {
+        self.row = row
+        
+        if beer.randomColor == nil {
+            if row % 2 == 0 {
+                beer.randomColor = UIColor.hexString(hex: App.randomBackgroundColors1[Int(arc4random_uniform(UInt32(4)))])
+            } else {
+                beer.randomColor = UIColor.hexString(hex: App.randomBackgroundColors2[Int(arc4random_uniform(UInt32(4)))])
+            }
+        }
+        
         if let rating = beer.rating {
             starsView.set(rating: rating)
         }
@@ -37,7 +48,9 @@ class MainTableViewCell: UITableViewCell {
         if let image = beer.image {
             beerImageView.image = image
         } else {
-            beerImageView.image = App.icon
+            beerImageView.image = App.transparentBeer
+            beerImageView.backgroundColor = beer.randomColor
         }
+
     }
 }

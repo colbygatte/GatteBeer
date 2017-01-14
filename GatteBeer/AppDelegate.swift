@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FIRApp.configure()
         
         App.icon = UIImage(named: "beer.png")
+        App.transparentBeer = UIImage(named: "transparent_beer.png")
         App.starRed = UIImage(named: "star_red.png")
         App.starGray = UIImage(named: "star_gray.png")
         App.formatter.dateFormat = "hh:mma yyyy-MM-dd"
@@ -35,9 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Push notifications
         if #available(iOS 10.0, *) {
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
             UNUserNotificationCenter.current().delegate = self
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -45,12 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         application.registerForRemoteNotifications()
         
+        
+        // Configure root view controller
+        App.containerViewController = ContainerViewController()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = App.containerViewController
+        window?.makeKeyAndVisible()
+        
         var continueDelegate = true
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             launchedShortcutItem = shortcutItem
             
             continueDelegate = false
         }
+        
         return continueDelegate
     }
 
@@ -70,18 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) -> Bool {
         var succeeded = false
         
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let navController = window?.rootViewController as! UINavigationController
-        
         if shortcutItem.type == "add" {
-            let vc = sb.instantiateViewController(withIdentifier: "New")
-            navController.pushViewController(vc, animated: false)
+            App.containerViewController.mainViewController.navigationController?.popToRootViewController(animated: true)
+            let new = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "New")
+            App.containerViewController.mainViewController.navigationController?.pushViewController(new, animated: false)
             succeeded = true
         } else {
-            navController.popToRootViewController(animated: false)
-            let vc = navController.visibleViewController as! MainViewController
-            vc.sortOptions(sort: .best)
-            vc.tableView.reloadData()
+            App.containerViewController.mainViewController.sortOptions(sort: .best)
+            succeeded = true
         }
         
         return succeeded

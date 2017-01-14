@@ -21,6 +21,8 @@ class GBBeer: NSObject {
     var notes: String?
     var location: GBLocation?
     
+    var randomColor: UIColor?
+    
     init(snapshot: FIRDataSnapshot) {
         let values = snapshot.value as! [String: Any]
         
